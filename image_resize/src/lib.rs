@@ -35,7 +35,7 @@ pub fn resize(buf: Vec<u8>, width: u32, height: u32, format: &str) -> String {
     match format {
         "jpeg" | "jpg" => {
             log!("match jpeg");
-            match resize_image.write_to(&mut result, image::ImageOutputFormat::Jpeg(90)) {
+            match resize_image.write_to(&mut result, image::ImageOutputFormat::Jpeg(80)) {
                 Ok(_) => log!("buffer write sucess"),
                 Err(err) => log!("buffer write error: {}", err),
             }
