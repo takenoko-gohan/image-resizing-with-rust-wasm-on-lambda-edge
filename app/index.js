@@ -29,8 +29,8 @@ exports.handler = (event, context, callback) => {
 
     // リサイズ後の幅と高さを取得する
     let dimension = params.d.split("x");
-    let width = dimension[0];
-    let height = dimension[1];
+    let width = parseInt(dimension[0], 10);
+    let height = parseInt(dimension[1], 10);
   
     // URI から必要な情報を取得
     let path = request.uri;
