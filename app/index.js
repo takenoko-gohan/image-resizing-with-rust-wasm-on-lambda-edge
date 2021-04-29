@@ -1,17 +1,17 @@
-'use strict';
+"use strict";
 
-const http = require('http');
-const https = require('https');
-const querystring = require('querystring');
+const http = require("http");
+const https = require("https");
+const querystring = require("querystring");
 const wasm = require("./wasm/image_resize");
 
-const AWS = require('aws-sdk');
+const AWS = require("aws-sdk");
 const S3 = new AWS.S3({
-    signatureVersion: 'v4',
+    signatureVersion: "v4",
 });
 
 // 自環境の S3 バケットを指定してください
-const BUCKET = '';
+const BUCKET = "";
 
 exports.handler = (event, context, callback) => {
     let response = event.Records[0].cf.response;
@@ -67,8 +67,8 @@ exports.handler = (event, context, callback) => {
             // generate a binary response with resized image
             response.status = 200;
             response.body = result;
-            response.bodyEncoding = 'base64';
-            response.headers['content-type'] = [{ key: 'Content-Type', value: 'image/' + requiredFormat }];
+            response.bodyEncoding = "base64";
+            response.headers["content-type"] = [{ key: "Content-Type", value: "image/" + requiredFormat }];
             console.log("response :", JSON.stringify(response));
             callback(null, response);
         })
